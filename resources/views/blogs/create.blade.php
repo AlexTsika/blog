@@ -26,7 +26,7 @@
                         <textarea class="form-control" id="content" name="content" required></textarea>
                         <div class="invalid-feedback">Please provide some content.</div>
                     </div>
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-outline-primary">Submit</button>
                 </form>            
             </div>
         </div>

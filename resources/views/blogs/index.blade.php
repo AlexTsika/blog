@@ -13,14 +13,18 @@
         <h1 class="text-center mt-5 mb-5">Blog</h1>
 
         <div class="d-flex justify-content-center mb-5">
-            <button type="button" class="btn btn-primary" onclick="window.location.href='/blogs/create'">Create new post</button>
+            <button type="button" class="btn btn-outline-primary" onclick="window.location.href='/blogs/create'">Create new post</button>
         </div>
 
-        @if (session('status'))
-            <div class="alert alert-success">
-                {{ session('status') }}
+        <div class="row justify-content-center">
+            <div class="col-md-4">
+                @if (session('status'))
+                    <div class="alert alert-success">
+                        {{ session('status') }}
+                    </div>
+                @endif
             </div>
-        @endif
+        </div>
     
         @if($blogs->isEmpty())
             <p class="text-center">No posts yet.</p>
@@ -33,10 +37,14 @@
                     <div class="col-md-4">
                         <h5>{{ $blog->title }}</h5>
                         <p>{{ $blog->content }}</p>
+                        <form action="{{ route('blogs.edit', $blog->id) }}" method="GET" style="display: inline;">
+                            @csrf
+                            <button type="submit" class="btn btn-outline-success mb-1">Edit</button>
+                        </form>                        
                         <form method="POST" action="/blogs/{{ $blog->id }}" onsubmit="return confirm('Do you really want to delete this post?');">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <button type="submit" class="btn btn-outline-danger">Delete</button>
                         </form>
                     </div>
                 </div>
